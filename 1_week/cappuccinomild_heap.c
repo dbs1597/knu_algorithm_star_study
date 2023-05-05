@@ -25,7 +25,7 @@ void insert(unsigned int val) {
 	heap[rear] = val;
 	i = rear++;
 
-	while (heap[(int)i / 2] < val) {
+	while (heap[(int)i / 2] <= val) {
 		swap(&heap[(int)i / 2], &heap[i]);
 		i /= 2;
 	}
@@ -78,9 +78,17 @@ unsigned int pop() {
 		}
 
 		else
-			break;
+			if (heap[i * 2] > heap[i]) {
+
+				swap(&heap[i * 2], &heap[i]);
+				i = i * 2;
+
+			}
+			else
+				break;
 
 	}
+	rear--;
 
 	return return_val;
 }
